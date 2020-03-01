@@ -173,4 +173,25 @@ public class JPAMappingTest {
 		result.get();
 		assertThat(grade.getRoutes(), containsInAnyOrder(twinky,phantasia));
 	}
+	
+	@Test
+	public void shouldFindRoutesForGrade() {
+		Grade grade = new Grade("5.12");
+		gradeRepo.save(grade);
+		//^v two ways to skin a cat
+		Grade grade2 = gradeRepo.save(new Grade("5.9"));
+		
+		Route twinky = routeRepo.save(new Route("twinky", "description", null, grade));
+		Route phantasia = routeRepo.save(new Route("phantasia", "description", null, grade));
+		Route creatureFeature = routeRepo.save(new Route("creature feature", "description", null, grade2));
+		
+		entityManager.flush();
+		entityManager.clear();
+		
+		//the method used by JQuery seems to be specific to a formula of findXbyY()
+		Collection<Route> routesForGrade = routeRepo.findRouteByGrade(grade);
+		Collection<Route> routesForGrade2 = routeRepo.findRouteByGrade(grade2);
+		assertThat(routesForGrade, containsInAnyOrder(twinky, phantasia));
+		assertThat(routesForGrade2, containsInAnyOrder(creatureFeature));
+	}
 }

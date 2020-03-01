@@ -8,6 +8,8 @@ public interface RouteRepository extends CrudRepository<Route, Long> {
 
 	Collection<Route> findRouteByStyle(Style sport);
 
+	Collection<Route> findRouteByGrade(Grade grade);
+
 
 
 }
