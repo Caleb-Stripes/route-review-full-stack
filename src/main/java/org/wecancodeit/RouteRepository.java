@@ -6,7 +6,7 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface RouteRepository extends CrudRepository<Route, Long> {
 
-	Collection<Route> findRouteByStyle(Style sport);
+	Collection<Route> findRouteByStyle(Style style);
 
 	Collection<Route> findRouteByGrade(Grade grade);
 
