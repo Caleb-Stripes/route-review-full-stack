@@ -1,7 +1,7 @@
 package org.wecancodeit;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.hamcrest.Matchers.greaterThan;
 import static org.junit.Assert.assertThat;
 
@@ -19,6 +19,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @DataJpaTest
 public class JPAMappingTest {
 
+	//TestEntityManager is required for tests involving entities
+	//(POJOs to be put into collections)
 	@Resource
 	private TestEntityManager entityManager;
 
@@ -30,7 +32,7 @@ public class JPAMappingTest {
 
 	@Test
 	public void shouldSaveAndLoadRoute() {
-		Route route = routeRepo.save(new Route("route", null));
+		Route route = routeRepo.save(new Route("route", null, null));
 		long routeId = route.getId();
 
 		entityManager.flush();
@@ -43,9 +45,9 @@ public class JPAMappingTest {
 
 	@Test
 	public void shouldSaveAndLoadMoreRoutes() {
-		Route routeOne = routeRepo.save(new Route("routeOne", null));
+		Route routeOne = routeRepo.save(new Route("routeOne", null, null));
 		long routeOneId = routeOne.getId();
-		Route routeTwo = routeRepo.save(new Route("routeTwo", null));
+		Route routeTwo = routeRepo.save(new Route("routeTwo", null, null));
 		long routeTwoId = routeTwo.getId();
 
 		Optional<Route> result = routeRepo.findById(routeOneId);
@@ -58,7 +60,7 @@ public class JPAMappingTest {
 
 	@Test
 	public void shouldGenerateRouteId() {
-		Route route = routeRepo.save(new Route("route", null));
+		Route route = routeRepo.save(new Route("route", null, null));
 		long routeId = route.getId();
 
 		entityManager.flush();
@@ -69,7 +71,7 @@ public class JPAMappingTest {
 
 	@Test
 	public void shouldSaveAndLoadRouteWithDescripton() {
-		Route route = routeRepo.save(new Route("route", "description"));
+		Route route = routeRepo.save(new Route("route", "description", null));
 		long routeId = route.getId();
 
 		entityManager.flush();
@@ -92,5 +94,28 @@ public class JPAMappingTest {
 		result.get();
 		assertThat(style.getName(), is("style"));
 		assertThat(style.getDescription(), is("description"));
+	}
+	
+	/* one style can have multiple routes, but each route will
+	 * have only one style. So, this is a many to one relationship
+	 * where style is the owner.
+	 */
+	@Test
+	public void shouldEstablishStyleToRouteRelationship() {
+		//route is not the owner of the relationship so we create them first
+		Route twinky = routeRepo.save(new Route("twinky", "description", null));
+		Route phantasia = routeRepo.save(new Route("phantasia", "description", null));
+
+		Style sport = new Style("sport", "description", twinky, phantasia);
+		styleRepo.save(sport);
+		long styleId = sport.getId();
+
+		
+		entityManager.flush();
+		entityManager.clear();
+		
+		Optional<Style> result = styleRepo.findById(styleId);
+		result.get();
+		assertThat(sport.getRoutes(), containsInAnyOrder("twinky", "phantasia"));
 	}
 }
