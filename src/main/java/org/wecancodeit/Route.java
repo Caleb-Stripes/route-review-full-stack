@@ -32,6 +32,7 @@ public class Route {
 	public Route(String name, String description, Style style) {
 		this.name = name;
 		this.description = description;
+		this.style = style;
 	}
 
 	public String getName() {

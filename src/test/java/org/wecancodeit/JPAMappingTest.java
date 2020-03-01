@@ -116,6 +116,11 @@ public class JPAMappingTest {
 		
 		Optional<Style> result = styleRepo.findById(styleId);
 		result.get();
-		assertThat(sport.getRoutes(), containsInAnyOrder("twinky", "phantasia"));
+		assertThat(sport.getRoutes(), containsInAnyOrder(twinky,phantasia));
+	}
+	
+	@Test
+	public void shouldFindRoutesForStyle() {
+		
 	}
 }
