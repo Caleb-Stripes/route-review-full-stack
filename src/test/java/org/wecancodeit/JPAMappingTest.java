@@ -43,7 +43,7 @@ public class JPAMappingTest {
 		entityManager.clear();
 
 		Optional<Route> result = routeRepo.findById(routeId);
-		result.get();
+		route = result.get();
 		assertThat(route.getName(), is("route"));
 	}
 
@@ -55,9 +55,9 @@ public class JPAMappingTest {
 		long routeTwoId = routeTwo.getId();
 
 		Optional<Route> result = routeRepo.findById(routeOneId);
-		result.get();
+		routeOne = result.get();
 		Optional<Route> result2 = routeRepo.findById(routeTwoId);
-		result2.get();
+		routeTwo = result2.get();
 		assertThat(routeOne.getName(), is("routeOne"));
 		assertThat(routeTwo.getName(), is("routeTwo"));
 	}
@@ -82,7 +82,7 @@ public class JPAMappingTest {
 		entityManager.clear();
 
 		Optional<Route> result = routeRepo.findById(routeId);
-		result.get();
+		route = result.get();
 		assertThat(route.getDescription(), is("description"));
 	}
 
@@ -95,7 +95,7 @@ public class JPAMappingTest {
 		entityManager.clear();
 
 		Optional<Style> result = styleRepo.findById(styleId);
-		result.get();
+		style = result.get();
 		assertThat(style.getName(), is("style"));
 		assertThat(style.getDescription(), is("description"));
 	}
