@@ -23,16 +23,20 @@ public class Route {
 	 */
 	@ManyToOne
 	private Style style;
+	
+	@ManyToOne
+	private Grade grade;
 
 	//when using JPA make sure to create a default constructor
 	public Route() {
 		
 	}
 	
-	public Route(String name, String description, Style style) {
+	public Route(String name, String description, Style style, Grade grade) {
 		this.name = name;
 		this.description = description;
 		this.style = style;
+		this.grade = grade;
 	}
 
 	public String getName() {
@@ -49,6 +53,10 @@ public class Route {
 	
 	public Style getStyle() {
 		return style;
+	}
+	
+	public Grade getGrade() {
+		return grade;
 	}
 
 	/* bringing in the hashCode() can be done by on the drop-down menu

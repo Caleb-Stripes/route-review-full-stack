@@ -5,6 +5,7 @@ import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.hamcrest.Matchers.greaterThan;
 import static org.junit.Assert.assertThat;
 
+import java.util.Collection;
 import java.util.Optional;
 
 import javax.annotation.Resource;
@@ -29,10 +30,13 @@ public class JPAMappingTest {
 
 	@Resource
 	private StyleRepository styleRepo;
+	
+	@Resource
+	private GradeRepository gradeRepo;
 
 	@Test
 	public void shouldSaveAndLoadRoute() {
-		Route route = routeRepo.save(new Route("route", null, null));
+		Route route = routeRepo.save(new Route("route", null, null, null));
 		long routeId = route.getId();
 
 		entityManager.flush();
@@ -45,9 +49,9 @@ public class JPAMappingTest {
 
 	@Test
 	public void shouldSaveAndLoadMoreRoutes() {
-		Route routeOne = routeRepo.save(new Route("routeOne", null, null));
+		Route routeOne = routeRepo.save(new Route("routeOne", null, null, null));
 		long routeOneId = routeOne.getId();
-		Route routeTwo = routeRepo.save(new Route("routeTwo", null, null));
+		Route routeTwo = routeRepo.save(new Route("routeTwo", null, null, null));
 		long routeTwoId = routeTwo.getId();
 
 		Optional<Route> result = routeRepo.findById(routeOneId);
@@ -60,7 +64,7 @@ public class JPAMappingTest {
 
 	@Test
 	public void shouldGenerateRouteId() {
-		Route route = routeRepo.save(new Route("route", null, null));
+		Route route = routeRepo.save(new Route("route", null, null, null));
 		long routeId = route.getId();
 
 		entityManager.flush();
@@ -71,7 +75,7 @@ public class JPAMappingTest {
 
 	@Test
 	public void shouldSaveAndLoadRouteWithDescripton() {
-		Route route = routeRepo.save(new Route("route", "description", null));
+		Route route = routeRepo.save(new Route("route", "description", null, null));
 		long routeId = route.getId();
 
 		entityManager.flush();
@@ -83,7 +87,7 @@ public class JPAMappingTest {
 	}
 
 	@Test
-	public void shouldSaveAndLoadTypeWithDescription() {
+	public void shouldSaveAndLoadStyleWithDescription() {
 		Style style = styleRepo.save(new Style("style", "description"));
 		long styleId = style.getId();
 
@@ -103,8 +107,8 @@ public class JPAMappingTest {
 	@Test
 	public void shouldEstablishStyleToRouteRelationship() {
 		//route is not the owner of the relationship so we create them first
-		Route twinky = routeRepo.save(new Route("twinky", "description", null));
-		Route phantasia = routeRepo.save(new Route("phantasia", "description", null));
+		Route twinky = routeRepo.save(new Route("twinky", "description", null, null));
+		Route phantasia = routeRepo.save(new Route("phantasia", "description", null, null));
 
 		Style sport = new Style("sport", "description", twinky, phantasia);
 		styleRepo.save(sport);
@@ -121,6 +125,52 @@ public class JPAMappingTest {
 	
 	@Test
 	public void shouldFindRoutesForStyle() {
+		Style sport = new Style("sport", "description");
+		styleRepo.save(sport);
 		
+		Route twinky = routeRepo.save(new Route("twinky", "description", sport, null));
+		Route phantasia = routeRepo.save(new Route("phantasia", "description", sport, null));
+		Route creatureFeature = routeRepo.save(new Route("creature feature", "description", sport, null));
+		
+		entityManager.flush();
+		entityManager.clear();
+		
+		//the method used by JQuery seems to be specific to a formula of findXbyY()
+		Collection<Route> routesForStyle = routeRepo.findRouteByStyle(sport);
+		
+		assertThat(routesForStyle, containsInAnyOrder(twinky, phantasia, creatureFeature));
+	}
+	
+	@Test
+	public void shouldSaveAndLoadGrade() {
+		Grade grade = new Grade("5.12");
+		gradeRepo.save(grade);
+		long gradeId = grade.getId();
+		
+		entityManager.flush();
+		entityManager.clear();
+		
+		Optional<Grade> result = gradeRepo.findById(gradeId);
+		result.get();
+		
+		assertThat(grade.getYds(), is("5.12"));		
+	}
+	
+	@Test
+	public void shouldEstablishRouteToGradeRelationship() {
+		Route twinky = routeRepo.save(new Route("twinky", "description", null, null));
+		Route phantasia = routeRepo.save(new Route("phantasia", "description", null, null));
+
+		Grade grade = new Grade("5.12", twinky, phantasia);
+		gradeRepo.save(grade);
+		long gradeId = grade.getId();
+
+		
+		entityManager.flush();
+		entityManager.clear();
+		
+		Optional<Grade> result = gradeRepo.findById(gradeId);
+		result.get();
+		assertThat(grade.getRoutes(), containsInAnyOrder(twinky,phantasia));
 	}
 }
