@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title th:text="${routes.name}">A route</title>
+    <link href="/src/main/resources/static/styles.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+    <header>
+        <h1 th:text="${routes.name}">A route</h1>
+    </header>
+
+    <main>
+
+        <h3 th:text="${routes.grade}"></h3>
+        <!-- <img th:src="${routes.img}" /> -->
+        <p th:text="${routes.description}"></p>
+    </main>
+
+    <footer>
+        <div><a href="/show-routes">Routes</a></div>
+        <small>A Bootcamp Project by Caleb Stripes using Spring Framework</small>
+    </footer>
+
+</body>
+
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>A List of All Reviewed Routes</title>
+</head>
+
+<body>
+
+    <header>
+        <h1>A List of All Routes</h1>
+    </header>
+
+    <main>
+        <ul>
+            <li th:each="route: ${routesModel}"><a th:href="@{/show-single-route(id=${route.id})}"
+                    th:text="${route.name}"></a></li>
+        </ul>
+    </main>
+
+    <footer>
+        <small>A Bootcamp Project by Caleb Stripes using Spring Framework</small>
+    </footer>
+
+</body>
+
+</html>
