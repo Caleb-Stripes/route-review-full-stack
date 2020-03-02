@@ -67,7 +67,7 @@ public class RouteController {
 		return "styles";
 	}
 
-	@RequestMapping("grade")
+	@RequestMapping("/grade")
 	public String findOneGrade(@RequestParam(value = "id") long id, Model gradeModel) throws GradeNotFoundException {
 		Optional<Grade> grade = gradeRepo.findById(id);
 		if (grade.isPresent()) {

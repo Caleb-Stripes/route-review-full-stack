@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>A List of All Reviewed Grades</title>
+</head>
+
+<body>
+
+    <header>
+        <h1>A List of All Grades</h1>
+    </header>
+
+    <main>
+        <ul>
+            <li th:each="route: ${gradesModel}"><a th:href="@{/show-single-grade(id=${grade.id})}"
+                    th:text="${grade.yds}"></a></li>
+        </ul>
+    </main>
+
+    <footer>
+        <small>A Bootcamp Project by Caleb Stripes using Spring Framework</small>
+    </footer>
+
+</body>
+
+</html>

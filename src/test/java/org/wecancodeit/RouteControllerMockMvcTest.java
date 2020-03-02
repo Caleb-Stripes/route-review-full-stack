@@ -55,6 +55,8 @@ public class RouteControllerMockMvcTest {
 	@Mock
 	private Grade gradeTwo;
 
+	//Route Testing
+	
 	@Test
 	public void shouldRouteToSingleRouteView() throws Exception {
 		long arbitraryRouteId = 1;
@@ -98,6 +100,8 @@ public class RouteControllerMockMvcTest {
 		mvc.perform(get("/show-routes")).andExpect(model().attribute("routes", is(allRoutes)));
 	}
 
+	//Route Style Testing
+	
 	@Test
 	public void shouldRouteToSingleStyleView() throws Exception {
 		long arbitraryStyleId = 1;
@@ -129,15 +133,60 @@ public class RouteControllerMockMvcTest {
 		mvc.perform(get("/show-styles?")).andExpect(view().name(is("styles")));
 	}
 	
-//	@Test
-//	public void statusShouldBeOkForAllRoutes() throws Exception {
-//		mvc.perform(get("/show-routes")).andExpect(status().isOk());
-//	}
-//	
-//	@Test
-//	public void shouldPutAllRoutesIntoModel() throws Exception {
-//		Collection<Route> allRoutes = Arrays.asList(routeOne, routeTwo);
-//		when(routeRepo.findAll()).thenReturn(allRoutes);
-//		mvc.perform(get("/show-routes")).andExpect(model().attribute("routes", is(allRoutes)));
-//	}
+	@Test
+	public void statusShouldBeOkForAllStyles() throws Exception {
+		mvc.perform(get("/show-styles")).andExpect(status().isOk());
+	}
+	
+	@Test
+	public void shouldPutAllStylesIntoModel() throws Exception {
+		Collection<Style> allStyles = Arrays.asList(styleOne, styleTwo);
+		when(styleRepo.findAll()).thenReturn(allStyles);
+		mvc.perform(get("/show-styles")).andExpect(model().attribute("styles", is(allStyles)));
+	}
+	
+	//Route Grade Testing
+	
+	@Test
+	public void shouldRouteToSingleGradeView() throws Exception {
+		long arbitraryGradeId = 1;
+		when(gradeRepo.findById(arbitraryGradeId)).thenReturn(Optional.of(gradeOne));
+		mvc.perform(get("/grade?id=1")).andExpect(view().name(is("grade")));
+	}
+	
+	@Test 
+	public void statusShouldBeOkForSingleGrade() throws Exception {
+		long arbitraryGradeId = 1;
+		when(gradeRepo.findById(arbitraryGradeId)).thenReturn(Optional.of(gradeOne));
+		mvc.perform(get("/grade?id=1")).andExpect(status().isOk());
+	}
+	
+	@Test
+	public void statusShouldBeNotOkForSingleGrade() throws Exception {
+		
+		mvc.perform(get("/grade?id=1")).andExpect(status().isNotFound());
+	}
+	
+	@Test
+	public void shouldPutSingleGradeIntoModel() throws Exception {
+		when(gradeRepo.findById(1L)).thenReturn(Optional.of(gradeOne));
+		mvc.perform(get("/grade?id=1")).andExpect(model().attribute("grades", is(gradeOne)));
+	}
+	
+	@Test
+	public void shouldRouteToAllGradesView() throws Exception {
+		mvc.perform(get("/show-grades?")).andExpect(view().name(is("grades")));
+	}
+	
+	@Test
+	public void statusShouldBeOkForAllGrades() throws Exception {
+		mvc.perform(get("/show-grades")).andExpect(status().isOk());
+	}
+	
+	@Test
+	public void shouldPutAllGradesIntoModel() throws Exception {
+		Collection<Grade> allGrades = Arrays.asList(gradeOne, gradeTwo);
+		when(gradeRepo.findAll()).thenReturn(allGrades);
+		mvc.perform(get("/show-grades")).andExpect(model().attribute("grades", is(allGrades)));
+	}
 }
