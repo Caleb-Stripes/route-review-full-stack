@@ -40,6 +40,9 @@ public class RouteControllerTest {
 	@MockBean
 	StyleRepository styleRepo;
 	
+	@MockBean
+	GradeRepository gradeRepo;
+	
 	@Mock
 	private Route route;
 	
@@ -53,10 +56,19 @@ public class RouteControllerTest {
 	private Style styleTwo;
 	
 	@Mock
+	private Grade gradeOne;
+	
+	@Mock
+	private Grade gradeTwo;
+	
+	@Mock
 	private Model routeModel;
 	
 	@Mock
 	private Model styleModel;
+	
+	@Mock
+	private Model gradeModel;
 	
 	@Before
 	public void setUp() {
@@ -97,7 +109,28 @@ public class RouteControllerTest {
 	
 	@Test
 	public void shouldAddAllStylesToModel() {
+		Collection<Style> allStyles = Arrays.asList(styleOne, styleTwo);
+		when(styleRepo.findAll()).thenReturn(allStyles);
 		
+		underTest.findAllStyles(styleModel);
+		verify(styleModel).addAttribute("styles", allStyles);
+	}
+	
+	@Test
+	public void shouldAddSingleGradeToModel() throws GradeNotFoundException {
+		long arbitraryGradeId = 1;
+		when(gradeRepo.findById(arbitraryGradeId)).thenReturn(Optional.of(gradeOne));
+		
+		underTest.findOneGrade(arbitraryGradeId, gradeModel);
+	}
+	
+	@Test
+	public void shouldAddAllGradesToModel() {
+		Collection<Grade> allGrades = Arrays.asList(gradeOne, gradeTwo);
+		when(gradeRepo.findAll()).thenReturn(allGrades);
+		
+		underTest.findAllGrades(gradeModel);
+		verify(gradeModel).addAttribute("grades", allGrades);
 	}
 	
 //	@Test
