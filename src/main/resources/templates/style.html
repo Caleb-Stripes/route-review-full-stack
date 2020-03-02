@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title th:text="${styles.name}">A Style</title>
+    <link href="/src/main/resources/static/styles.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+    <header>
+        <h1 th:text="${styles.name}">A style</h1>
+    </header>
+
+    <main>
+        <p th:text="${styles.description}"></p>
+    </main>
+
+    <footer>
+        <div><a href="/show-routes">Routes</a></div>
+        <small>A Bootcamp Project by Caleb Stripes using Spring Framework</small>
+    </footer>
+</body>
+
+</html>
