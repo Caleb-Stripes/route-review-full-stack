@@ -12,7 +12,10 @@
         <h2 th:text="${grades.yds}"></h2>
         <h2>Routes of this Grade</h2>
         <ul>
-            <li th:each="grade: ${grades.routes}"></li>
+            <!-- for each model of grade do ${this thing} -->
+            <li th:each="route: ${grades.routes}">
+                <h3 th:text="${route.name}"></h3>
+            </li>
         </ul>
     </header>
 

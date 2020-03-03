@@ -52,6 +52,8 @@ public class RoutePopulator implements CommandLineRunner{
 		monkeySwing = routeRepo.save(monkeySwing);
 		Route dawnWallFree = new Route("Dawn Wall Free", "2500 foot route up Yosemite's El Capitan.", trad, five14);
 		dawnWallFree = routeRepo.save(dawnWallFree);
+		Route narcissus = new Route("Narcissus", "A steep classic climb in a cave on the shores of Summersville Lake", sport, five12a);
+		narcissus = routeRepo.save(narcissus);
 	
 	}
 	
