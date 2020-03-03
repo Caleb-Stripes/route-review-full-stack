@@ -3,6 +3,7 @@
 
 <head>
     <title>A List of All Reviewed Routes</title>
+    <link href="/src/main/resources/static/styles.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -15,6 +16,7 @@
         <ul>
             <li th:each="route: ${routes}"><a th:href="@{/show-single-route(id=${route.id})}"
                     th:text="${route.name}"></a></li>
+            <li>test item</li>
         </ul>
     </main>
 

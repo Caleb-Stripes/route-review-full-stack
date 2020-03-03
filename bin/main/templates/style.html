@@ -16,9 +16,8 @@
         <p th:text="${styles.description}"></p>
         <h2>Routes of this style include</h2>
         <ul>
-            <li th:each="route: ${styles.routes}">
-                <h3 th:text="${route.name}"></h3>
-            </li>
+            <li th:each="route: ${styles.routes}"><a th:href="@{/show-single-route(id=${route.id})}"
+                    th:text="${route.name}"></a></li>
         </ul>
     </main>
 

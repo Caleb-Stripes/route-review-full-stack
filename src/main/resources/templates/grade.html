@@ -13,9 +13,8 @@
         <h2>Routes of this Grade</h2>
         <ul>
             <!-- for each model of grade do ${this thing} -->
-            <li th:each="route: ${grades.routes}">
-                <h3 th:text="${route.name}"></h3>
-            </li>
+            <li th:each="route: ${grades.routes}"><a th:href="@{/show-single-route(id=${route.id})}"
+                    th:text="${route.name}"></a></li>
         </ul>
     </header>
 
