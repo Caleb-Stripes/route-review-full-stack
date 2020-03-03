@@ -13,8 +13,8 @@
 
     <main>
         <ul>
-            <li th:each="style: ${styleModel}"><a href="@{/show-single-style(id={style.id})}"
-                    th:text="${style.name}"></a></li>
+            <li th:each="style: ${styles}"><a href="@{/show-single-style(id={style.id})}" th:text="${style.name}"></a>
+            </li>
         </ul>
     </main>
 

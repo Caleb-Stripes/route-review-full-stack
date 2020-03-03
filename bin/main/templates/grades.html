@@ -13,7 +13,7 @@
 
     <main>
         <ul>
-            <li th:each="route: ${gradesModel}"><a th:href="@{/show-single-grade(id=${grade.id})}"
+            <li th:each="grade: ${grades}"><a th:href="@{/show-single-grade(id=${grade.id})}"
                     th:text="${grade.yds}"></a></li>
         </ul>
     </main>

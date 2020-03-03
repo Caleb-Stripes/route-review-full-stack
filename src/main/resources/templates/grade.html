@@ -2,20 +2,23 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <title th:text="${grades.yds}">A Style</title>
+    <title th:text="${grades.yds}"></title>
     <link href="/src/main/resources/static/style.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 
     <header>
-        <h1 th:text="${grades.yds}">A style</h1>
+        <h2 th:text="${grades.yds}"></h2>
+        <h2>Routes of this Grade</h2>
+        <h1></h1>
     </header>
 
     <main>
         <p>There are various grading systems in place for climbing routes.</p>
         <ul>
             <li>In Sport and Trad, YDS the Yosemite Decimal System: Ranges from 5.0 to 5.15d</li>
+
             <li>In Bouldering, the "V" scale or the Hueco "V" grades: Range from VB or V0 to V16</li>
         </ul>
     </main>

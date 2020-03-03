@@ -21,7 +21,7 @@ public class RouteController {
 	@Resource
 	GradeRepository gradeRepo;
 
-	@RequestMapping("/route")
+	@RequestMapping("/show-single-route")
 	public String findOneRoute(@RequestParam(value = "id") long id, Model routeModel) throws RouteNotFoundException {
 		Optional<Route> route = routeRepo.findById(id);
 
@@ -40,7 +40,7 @@ public class RouteController {
 		return ("routes");
 	}
 
-	@RequestMapping("/style")
+	@RequestMapping("/show-single-style")
 	public String findOneStyle(@RequestParam(value = "id") long id, Model styleModel) throws StyleNotFoundException {
 		Optional<Style> style = styleRepo.findById(id);
 
@@ -67,7 +67,7 @@ public class RouteController {
 		return "styles";
 	}
 
-	@RequestMapping("/grade")
+	@RequestMapping("/show-single-grade")
 	public String findOneGrade(@RequestParam(value = "id") long id, Model gradeModel) throws GradeNotFoundException {
 		Optional<Grade> grade = gradeRepo.findById(id);
 		if (grade.isPresent()) {

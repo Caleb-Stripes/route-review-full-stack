@@ -24,15 +24,21 @@ public class RoutePopulator implements CommandLineRunner{
 		sport = styleRepo.save(sport);
 		Style trad = new Style("Trad", "Lead climbing using non-fixed gear to protect the climber.");
 		trad = styleRepo.save(trad);
-		Style bouldering = new Style("Bouldering", "Ropeless climbing on boulders, protected by crash pads.");
-		bouldering = styleRepo.save(bouldering);
+		Style boulder = new Style("Boulder", "Ropeless climbing on boulders, protected by crash pads.");
+		boulder = styleRepo.save(boulder);
 		
 		Grade five12a = new Grade("5.12a");
+		five12a = gradeRepo.save(five12a);
 		Grade five12d = new Grade("5.12d");
+		five12d = gradeRepo.save(five12d);
 		Grade five9 = new Grade("5.9");
+		five9 = gradeRepo.save(five9);
 		Grade five6 = new Grade("5.6");
+		five6 = gradeRepo.save(five6);
 		Grade v6 = new Grade("V6");
+		v6 = gradeRepo.save(v6);
 		Grade five14 = new Grade("5.14c");
+		five14 = gradeRepo.save(five14);
 		
 		Route twinky = new Route("Twinky", "The steepest route in the Red River Gorge.", sport, five12a);
 		twinky = routeRepo.save(twinky);
@@ -42,7 +48,7 @@ public class RoutePopulator implements CommandLineRunner{
 		happyHands = routeRepo.save(happyHands);
 		Route durrance = new Route("Durrance(approach)", "The \"easiest\" way up Devil's Tower.", trad, five6);
 		durrance = routeRepo.save(durrance);
-		Route monkeySwing = new Route("Monkey Swing", "The Chippewa Creek classic boulder.", bouldering, v6);
+		Route monkeySwing = new Route("Monkey Swing", "The Chippewa Creek classic boulder.", boulder, v6);
 		monkeySwing = routeRepo.save(monkeySwing);
 		Route dawnWallFree = new Route("Dawn Wall Free", "2500 foot route up Yosemite's El Capitan.", trad, five14);
 		dawnWallFree = routeRepo.save(dawnWallFree);
