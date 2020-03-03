@@ -37,7 +37,7 @@ public class RouteController {
 	@RequestMapping("/show-routes")
 	public String findAllRoutes(Model routeModel) {
 		routeModel.addAttribute("routes", routeRepo.findAll());
-		return ("routes");
+		return "routes";
 	}
 
 	@RequestMapping("/show-single-style")

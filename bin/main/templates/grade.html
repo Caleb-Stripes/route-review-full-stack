@@ -11,7 +11,9 @@
     <header>
         <h2 th:text="${grades.yds}"></h2>
         <h2>Routes of this Grade</h2>
-        <h1></h1>
+        <ul>
+            <li th:each="grade: ${grades.routes}"></li>
+        </ul>
     </header>
 
     <main>
@@ -19,12 +21,17 @@
         <ul>
             <li>In Sport and Trad, YDS the Yosemite Decimal System: Ranges from 5.0 to 5.15d</li>
 
-            <li>In Bouldering, the "V" scale or the Hueco "V" grades: Range from VB or V0 to V16</li>
+            <li>In Bouldering, the " V" scale or the Hueco "V" grades: Range from VB or V0 to V16</li>
         </ul>
     </main>
 
     <footer>
-        <div><a href="/show-routes">Routes</a></div>
+        <nav>
+            <a href="/show-routes">Routes</a>
+            <a href="/show-grades">Grades</a>
+            <a href="/show-styles">Styles</a>
+        </nav>
+
         <small>A Bootcamp Project by Caleb Stripes using Spring Framework</small>
     </footer>
 </body>

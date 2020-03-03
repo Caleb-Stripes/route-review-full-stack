@@ -68,7 +68,7 @@ public class RouteControllerMockMvcTest {
 	public void statusShouldBeOkForSingleRoute() throws Exception {
 		long arbitraryRouteId = 1;
 		when(routeRepo.findById(arbitraryRouteId)).thenReturn(Optional.of(routeOne));
-		mvc.perform(get("/route?id=1")).andExpect(status().isOk());
+		mvc.perform(get("/show-single-route?id=1")).andExpect(status().isOk());
 	}
 	
 	@Test
@@ -158,7 +158,7 @@ public class RouteControllerMockMvcTest {
 	public void statusShouldBeOkForSingleGrade() throws Exception {
 		long arbitraryGradeId = 1;
 		when(gradeRepo.findById(arbitraryGradeId)).thenReturn(Optional.of(gradeOne));
-		mvc.perform(get("/grade?id=1")).andExpect(status().isOk());
+		mvc.perform(get("/show-single-grade?id=1")).andExpect(status().isOk());
 	}
 	
 	@Test
@@ -170,7 +170,7 @@ public class RouteControllerMockMvcTest {
 	@Test
 	public void shouldPutSingleGradeIntoModel() throws Exception {
 		when(gradeRepo.findById(1L)).thenReturn(Optional.of(gradeOne));
-		mvc.perform(get("/grade?id=1")).andExpect(model().attribute("grades", is(gradeOne)));
+		mvc.perform(get("/show-single-grade?id=1")).andExpect(model().attribute("grades", is(gradeOne)));
 	}
 	
 	@Test
