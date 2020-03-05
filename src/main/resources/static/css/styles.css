@@ -7,11 +7,22 @@
 }
 
 html {
+    background-color: darkslategrey;
     font-size: 30px;
     margin-top: 3em;
+    margin-left: auto;
     height: 100%;
     margin: 0%;
     
+}
+
+img {
+    max-width: 300px;
+    image-orientation: from-image;
+    display: flex;
+    justify-content: center;
+    border: black solid 10px;
+    border-radius: 5em;
 }
 
 header{
@@ -19,12 +30,27 @@ header{
    color: blue;
    border-radius: 1em 1em 1em 1em;
    text-align: center;
+   justify-content: center;
 }
 
-main li{
-    background-color: darkgreen;
-    color: burlywood;
+li{
+    background-color: whitesmoke;
+    color: black;
     border-radius: 5em;
     text-align: center;
+    
+}
+
+
+
+footer {
+    padding-left: 2em;
+    padding-top: 1em;
+    padding-bottom: 3em;
+    margin-top: 2em;
+    background-color: black;
+    display: flex;
+    justify-content: stretch;
+   
 }
 

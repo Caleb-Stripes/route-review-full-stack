@@ -15,8 +15,8 @@
 
     <main>
         <ul>
-            <li th:each="grade: ${grades}"><a th:href="@{/show-single-grade(id=${grade.id})}"
-                    th:text="${grade.yds}"></a></li>
+            <li th:each="grade:${grades}"><a th:href="@{/show-single-grade(id=${grade.id})}" th:text="${grade.yds}"></a>
+            </li>
         </ul>
     </main>
 

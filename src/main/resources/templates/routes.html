@@ -13,7 +13,7 @@
     </header>
 
     <main>
-        <img src="#{src/main/resources/static/routes-page.JPG}" alt="a B.A. woman hangin out high in Colorado">
+        <img src="images/routes-page.JPG" alt="a B.A. woman hangin out high in Colorado">
         <ul>
             <li th:each="route: ${routes}"><a th:href="@{/show-single-route(id=${route.id})}"
                     th:text="${route.name}"></a></li>
