@@ -36,7 +36,7 @@ public class JPAMappingTest {
 
 	@Test
 	public void shouldSaveAndLoadRoute() {
-		Route route = routeRepo.save(new Route("route", null, null, null));
+		Route route = routeRepo.save(new Route("route", null, null, null, null));
 		long routeId = route.getId();
 
 		entityManager.flush();
@@ -49,9 +49,9 @@ public class JPAMappingTest {
 
 	@Test
 	public void shouldSaveAndLoadMoreRoutes() {
-		Route routeOne = routeRepo.save(new Route("routeOne", null, null, null));
+		Route routeOne = routeRepo.save(new Route("routeOne", null, null, null, null));
 		long routeOneId = routeOne.getId();
-		Route routeTwo = routeRepo.save(new Route("routeTwo", null, null, null));
+		Route routeTwo = routeRepo.save(new Route("routeTwo", null, null, null, null));
 		long routeTwoId = routeTwo.getId();
 
 		Optional<Route> result = routeRepo.findById(routeOneId);
@@ -64,7 +64,7 @@ public class JPAMappingTest {
 
 	@Test
 	public void shouldGenerateRouteId() {
-		Route route = routeRepo.save(new Route("route", null, null, null));
+		Route route = routeRepo.save(new Route("route", null, null, null, null));
 		long routeId = route.getId();
 
 		entityManager.flush();
@@ -75,7 +75,7 @@ public class JPAMappingTest {
 
 	@Test
 	public void shouldSaveAndLoadRouteWithDescripton() {
-		Route route = routeRepo.save(new Route("route", "description", null, null));
+		Route route = routeRepo.save(new Route("route", "description", null, null, null));
 		long routeId = route.getId();
 
 		entityManager.flush();
@@ -107,8 +107,8 @@ public class JPAMappingTest {
 	@Test
 	public void shouldEstablishStyleToRouteRelationship() {
 		//route is not the owner of the relationship so we create them first
-		Route twinky = routeRepo.save(new Route("twinky", "description", null, null));
-		Route phantasia = routeRepo.save(new Route("phantasia", "description", null, null));
+		Route twinky = routeRepo.save(new Route("twinky", "description", null, null, null));
+		Route phantasia = routeRepo.save(new Route("phantasia", "description", null, null, null));
 
 		Style sport = new Style("sport", "description", twinky, phantasia);
 		styleRepo.save(sport);
@@ -128,9 +128,9 @@ public class JPAMappingTest {
 		Style sport = new Style("sport", "description");
 		styleRepo.save(sport);
 		
-		Route twinky = routeRepo.save(new Route("twinky", "description", sport, null));
-		Route phantasia = routeRepo.save(new Route("phantasia", "description", sport, null));
-		Route creatureFeature = routeRepo.save(new Route("creature feature", "description", sport, null));
+		Route twinky = routeRepo.save(new Route("twinky", "description", sport, null, null));
+		Route phantasia = routeRepo.save(new Route("phantasia", "description", sport, null, null));
+		Route creatureFeature = routeRepo.save(new Route("creature feature", "description", sport, null, null));
 		
 		entityManager.flush();
 		entityManager.clear();
@@ -158,8 +158,8 @@ public class JPAMappingTest {
 	
 	@Test
 	public void shouldEstablishRouteToGradeRelationship() {
-		Route twinky = routeRepo.save(new Route("twinky", "description", null, null));
-		Route phantasia = routeRepo.save(new Route("phantasia", "description", null, null));
+		Route twinky = routeRepo.save(new Route("twinky", "description", null, null, null));
+		Route phantasia = routeRepo.save(new Route("phantasia", "description", null, null, null));
 
 		Grade grade = new Grade("5.12", twinky, phantasia);
 		gradeRepo.save(grade);
@@ -181,9 +181,9 @@ public class JPAMappingTest {
 		//^v two ways to skin a cat
 		Grade grade2 = gradeRepo.save(new Grade("5.9"));
 		
-		Route twinky = routeRepo.save(new Route("twinky", "description", null, grade));
-		Route phantasia = routeRepo.save(new Route("phantasia", "description", null, grade));
-		Route creatureFeature = routeRepo.save(new Route("creature feature", "description", null, grade2));
+		Route twinky = routeRepo.save(new Route("twinky", "description", null, grade, null));
+		Route phantasia = routeRepo.save(new Route("phantasia", "description", null, grade, null));
+		Route creatureFeature = routeRepo.save(new Route("creature feature", "description", null, grade2, null));
 		
 		entityManager.flush();
 		entityManager.clear();

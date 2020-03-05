@@ -15,6 +15,7 @@ public class Route {
 	private String name;
 
 	private String description;
+	private String img;
 	
 	/* because one style may have many routes, we have a @OneToMany relationship
 	 * owned by the style class. Here we use annotation to build the route side
@@ -27,16 +28,18 @@ public class Route {
 	@ManyToOne
 	private Grade grade;
 
+
 	//when using JPA make sure to create a default constructor
 	public Route() {
 		
 	}
 	
-	public Route(String name, String description, Style style, Grade grade) {
+	public Route(String name, String description, Style style, Grade grade, String img) {
 		this.name = name;
 		this.description = description;
 		this.style = style;
 		this.grade = grade;
+		this.img = img;
 	}
 
 	public String getName() {
@@ -86,6 +89,10 @@ public class Route {
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
+	}
+
+	public String getImg() {
+		return img;
 	}
 
 	

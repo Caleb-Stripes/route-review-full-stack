@@ -3,7 +3,7 @@
 
 <head>
     <title th:text="${routes.name}">A route</title>
-    <link href="/src/main/resources/static/styles.css" rel="stylesheet" type="text/css">
+    <link href="css/styles.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -16,7 +16,7 @@
 
         <h2 th:text="${routes.style.name}"></h2>
         <h3 th:text="${routes.grade.yds}"></h3>
-        <!-- <img th:src="${routes.img}" /> -->
+        <img th:src="${routes.img}">
         <p th:text="${routes.description}"></p>
     </main>
 

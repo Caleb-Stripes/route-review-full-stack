@@ -1,0 +1,30 @@
+* {
+    font-family: sans-serif;
+    line-height: 1.618em;
+    box-sizing: border-box;
+    margin: auto;
+    padding: 0;
+}
+
+html {
+    font-size: 30px;
+    margin-top: 3em;
+    height: 100%;
+    margin: 0%;
+    
+}
+
+header{
+   background-color: cornflowerblue;
+   color: blue;
+   border-radius: 1em 1em 1em 1em;
+   text-align: center;
+}
+
+main li{
+    background-color: darkgreen;
+    color: burlywood;
+    border-radius: 5em;
+    text-align: center;
+}
+
