@@ -10,7 +10,7 @@ html {
     background-color: darkslategrey;
     font-size: 30px;
     margin-top: 3em;
-    margin-left: auto;
+    margin-left: 10%;
     height: 100%;
     margin: 0%;
     
@@ -23,9 +23,13 @@ img {
     justify-content: center;
     border: black solid 10px;
     border-radius: 5em;
+    margin-top: 2em;
+    margin-bottom: 2em;
 }
 
 header{
+    margin-top: 2em;
+    max-width: 60%;
    background-color: cornflowerblue;
    color: blue;
    border-radius: 1em 1em 1em 1em;
@@ -50,7 +54,8 @@ footer {
     margin-top: 2em;
     background-color: black;
     display: flex;
-    justify-content: stretch;
+    flex-flow: row;
+    justify-content: center;
    
 }
 
